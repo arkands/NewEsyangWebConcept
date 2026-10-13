@@ -28,13 +28,15 @@
     .product-section-head{display:flex;align-items:end;justify-content:space-between;gap:2rem;margin-bottom:2rem}.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.category-card{padding:.8rem 1rem 1.35rem;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}.category-photo{min-height:205px;display:grid;place-items:center;border-radius:var(--r-sm);background:var(--green-soft)}.category-photo span{width:86px;height:130px;display:grid;place-items:center;border:1px solid rgba(0,66,37,.45);border-radius:44px 44px 8px 8px;background:rgba(244,248,251,.5);color:var(--green);font-size:.6rem;font-weight:800;letter-spacing:.14em}.category-card h3{margin:1.1rem 0 .3rem;color:var(--green);font:1.65rem var(--serif)}.category-card p{margin:0 0 1rem;color:var(--muted);font-size:.83rem}.category-card .btn{min-height:42px}
     /* BENEFITS: concise reasons on the primary green background. */
     .benefits{padding:3.5rem 0;background:var(--green);color:var(--paper)}.benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}.benefit{display:flex;align-items:flex-start;gap:1rem}.benefit-mark{width:2px;height:40px;flex:none;background:rgba(244,248,251,.65)}.benefit h3{margin:0 0 .3rem;font-size:.93rem}.benefit p{margin:0;color:#e0ece5;font-size:.78rem}
-    /* HOME CAROUSEL: kartu dibuat sekali, lalu berpindah antar posisi (data-pos) dengan transisi transform + opacity. */
+    /* HOME CAROUSEL: green title band, three-card desktop stage, and controls. */
+    .spotlight{padding:0 0 clamp(3rem,7vw,5rem);background:var(--paper)}.spotlight-heading{padding:2.1rem 1rem 1.55rem;background:var(--green);color:var(--paper);text-align:center}.spotlight-heading h2{margin:0;color:var(--paper);font:clamp(2rem,4vw,3rem)/1.1 var(--serif)}.double-rule{width:64px;height:5px;margin:1rem auto 0;border-top:1px solid rgba(244,248,251,.85);border-bottom:1px solid rgba(244,248,251,.85)}.spotlight-inner{padding-top:2.2rem}.carousel-stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:1rem;transition:opacity .15s ease}.carousel-stage.is-changing{opacity:.35}.spotlight-card{position:relative;min-width:0;overflow:hidden;border:1px solid transparent;border-radius:var(--r-md);background:var(--green-soft);color:var(--green);transition:transform .2s ease,opacity .2s ease,background .2s ease,border-color .2s ease}.spotlight-card.is-side{opacity:.72;transform:scale(.94)}.spotlight-card.is-side:hover{opacity:.92;transform:scale(.96)}.spotlight-card.is-active{z-index:1;border:1.5px solid var(--green);background:var(--surface);box-shadow:var(--shadow);transform:scale(1.035)}.spotlight-image{height:190px;position:relative;display:grid;place-items:center;overflow:hidden;background:var(--green-soft)}.spotlight-card.is-active .spotlight-image{background:var(--paper)}.spotlight-image img{width:100%;height:100%;object-fit:cover}.spotlight-icon{color:var(--green);font:3rem/1 var(--serif)}.spotlight-placeholder-label{position:absolute;bottom:.55rem;right:.7rem;color:var(--muted);font-size:.55rem;letter-spacing:.11em}.spotlight-copy{padding:1rem 1rem .75rem}.spotlight-copy h3{margin:0 0 .45rem;color:var(--green);font:1.55rem/1.15 var(--serif)}.spotlight-copy p{min-height:3.2em;margin:0;color:var(--muted);font-size:.78rem;line-height:1.55}.spotlight-bottom{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.65rem 1rem .9rem;border-top:1px solid rgba(0,66,37,.13)}.spotlight-bottom a{color:var(--green);font-size:.75rem;font-weight:800;text-decoration:none}.spotlight-bottom a:hover{text-decoration:underline}.spotlight-index{color:var(--muted);font-size:.62rem;font-weight:700;letter-spacing:.08em}.side-select{position:absolute;z-index:2;inset:0 0 48px;border:0;background:transparent;cursor:pointer}.carousel-controls{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;margin-top:1.7rem}.carousel-arrows{display:flex;gap:.55rem}.carousel-control{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--green);border-radius:50%;background:transparent;color:var(--green);font-size:1rem;cursor:pointer}.carousel-control:hover{background:var(--green-soft)}.carousel-dots{display:flex;justify-content:center;gap:.5rem}.carousel-dot{width:9px;height:9px;padding:0;border:1px solid var(--green);border-radius:50%;background:transparent;cursor:pointer}.carousel-dot[aria-current="true"]{width:24px;border-radius:999px;background:var(--green)}.play-toggle{justify-self:end;min-height:40px;padding:.45rem .85rem;border:1px solid var(--green);border-radius:999px;background:transparent;color:var(--green);font-size:.72rem;font-weight:800;cursor:pointer}.play-toggle:hover{background:var(--green-soft)}
+    /* HOME CAROUSEL: each card is created once and transitions between position states. */
     .spotlight{padding:0 0 clamp(3rem,7vw,5rem);background:var(--paper);overflow:hidden}
     .spotlight-heading{padding:2.1rem 1rem 1.55rem;background:var(--green);color:var(--paper);text-align:center}
     .spotlight-heading h2{margin:0;color:var(--paper);font:clamp(2rem,4vw,3rem)/1.1 var(--serif)}
     .double-rule{width:64px;height:5px;margin:1rem auto 0;border-top:1px solid rgba(244,248,251,.85);border-bottom:1px solid rgba(244,248,251,.85)}
     .spotlight-inner{padding-top:2.2rem}
-    /* Tinggi 860px memberi ruang untuk kartu aktif yang diperbesar beserta bayangannya. */
+    /* 860px gives the enlarged card and its soft shadow room without clipping. */
     .carousel-stage{position:relative;height:860px;overflow:visible;isolation:isolate}
     .spotlight-card{position:absolute;top:50%;left:50%;width:25%;min-width:250px;overflow:hidden;border:1px solid transparent;border-radius:var(--r-md);background:var(--green-soft);color:var(--green);transform:translate3d(-50%,-50%,0) scale(.8);transform-origin:center center;opacity:.58;z-index:1;transition:transform 600ms cubic-bezier(.22,1,.36,1),opacity 600ms cubic-bezier(.22,1,.36,1);will-change:transform,opacity}
     .spotlight-card[data-pos="active"]{z-index:3;opacity:1;background:var(--surface);border:1.5px solid var(--green);box-shadow:0 28px 72px rgba(0,66,37,.2);transform:translate3d(-50%,-50%,0) scale(1.8)}
@@ -63,7 +65,7 @@
     .spotlight-index{color:var(--muted);font-size:.62rem;font-weight:700;letter-spacing:.08em}
     .side-select{position:absolute;z-index:2;inset:0 0 48px;border:0;background:transparent;cursor:pointer}
     .spotlight-card[data-pos="hidden-left"] .side-select,.spotlight-card[data-pos="hidden-right"] .side-select,.spotlight-card[data-pos^="jump-"] .side-select{display:none}
-    /* Kontrol carousel: tombol panah, titik slide, dan tombol putar/jeda. */
+    /* Shared carousel controls: arrow buttons, slide dots, and autoplay toggle. */
     .carousel-controls{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;margin-top:.8rem}
     .carousel-arrows{display:flex;gap:.55rem}
     .carousel-control{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--green);border-radius:50%;background:transparent;color:var(--green);font-size:1rem;cursor:pointer}
@@ -85,11 +87,11 @@
     @media(max-width:900px){.nav-links{gap:1rem}.hero-grid{gap:2rem}.hero-photo{min-height:390px}.about-grid,.contact-grid{gap:2rem}}
     @media(min-width:701px) and (max-width:900px){.spotlight-card{width:34%;min-width:0}}
     @media(max-width:700px){.shell{width:min(var(--content),calc(100% - 32px))}.navbar{min-height:68px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:1rem 1.2rem 1.3rem;border-bottom:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:.25rem}.nav-links.is-open{display:flex}.nav-links a:not(.btn){padding:.65rem .5rem}.nav-links .btn{margin-top:.35rem}.hero{padding:3rem 0 4rem}.hero-grid{grid-template-columns:1fr;gap:2rem}.hero h1{font-size:clamp(3rem,14vw,4.7rem)}.hero-photo{min-height:340px}.section{padding:4rem 0}.about-grid,.contact-grid{grid-template-columns:1fr}.product-section-head{display:block}.product-section-head .section-intro{margin-top:.75rem}.category-grid{grid-template-columns:1fr}.category-photo{min-height:225px}.benefit-grid{grid-template-columns:1fr;gap:1.3rem}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.type-grid{grid-template-columns:1fr}.type-choice{min-height:155px}.buy-list-top{align-items:flex-start;flex-direction:column}.buy-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-grid{grid-template-columns:1fr 1fr;gap:1.8rem}.footer-grid>div:first-child{grid-column:1/-1}}
-    /* Carousel mobile: satu kartu ukuran penuh meluncur horizontal sambil memudar. */
+    @media(max-width:700px){.spotlight-inner{padding-top:1.5rem}.carousel-stage{display:block;min-height:350px}.spotlight-card{display:none}.spotlight-card.is-active{display:block;max-width:430px;margin:0 auto;transform:none}.spotlight-card.is-active .spotlight-image{height:210px}.carousel-controls{grid-template-columns:auto 1fr auto;gap:.7rem}.carousel-dots{gap:.4rem}.carousel-dot{width:8px;height:8px}.carousel-dot[aria-current="true"]{width:20px}.play-toggle{padding:.4rem .65rem;font-size:.68rem}}
+    /* Mobile carousel: one full-size card slides horizontally and fades between states. */
     @media(max-width:700px){.spotlight-inner{padding-top:1.5rem}.carousel-stage{height:430px;margin-inline:-.5rem}.spotlight-card{width:min(88%,430px);min-width:0;transform:translate3d(-50%,-50%,0) scale(.94)}.spotlight-card[data-pos="active"]{transform:translate3d(-50%,-50%,0) scale(1);box-shadow:0 16px 40px rgba(0,66,37,.14)}.spotlight-card[data-pos="prev"]{--shift:-105%;opacity:0;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="next"]{--shift:105%;opacity:0;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="prev"]:hover,.spotlight-card[data-pos="next"]:hover{opacity:0;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="hidden-left"]{--shift:-190%;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="hidden-right"]{--shift:190%;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="active"] .spotlight-image{height:210px}.spotlight-card[data-pos="active"] .spotlight-copy h3{font-size:1.65rem}.carousel-controls{grid-template-columns:auto 1fr auto;gap:.7rem}.carousel-dots{gap:.4rem}.carousel-dot{width:8px;height:8px}.carousel-dot[aria-current="true"]{width:20px}.play-toggle{padding:.4rem .65rem;font-size:.68rem}}
-    /* Reduced motion: kartu tetap meluncur 450ms saat dinavigasi manual (hanya autoplay yang mati), tanpa efek angkat saat hover. */
-    @media(prefers-reduced-motion:reduce){.spotlight-card{transition:transform 450ms cubic-bezier(.22,1,.36,1),opacity 450ms cubic-bezier(.22,1,.36,1)!important}}
-    @media(prefers-reduced-motion:reduce) and (min-width:701px){.spotlight-card[data-pos="prev"]:hover,.spotlight-card[data-pos="next"]:hover{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.8)}}
+    /* Reduced motion: preserve a 450ms translation/fade for manual carousel navigation, without scaling or hover lift. */
+    @media(prefers-reduced-motion:reduce){.spotlight-card{transition:transform 450ms cubic-bezier(.22,1,.36,1),opacity 450ms cubic-bezier(.22,1,.36,1)!important}.spotlight-card[data-pos="active"]{transform:translate3d(-50%,-50%,0) scale(1)}.spotlight-card[data-pos="prev"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="next"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="hidden-left"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="hidden-right"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="jump-left"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="jump-right"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="prev"]:hover,.spotlight-card[data-pos="next"]:hover{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}}
     @media(max-width:480px){.buy-product-grid{grid-template-columns:1fr}.buy-image,.buy-image img{height:230px;min-height:230px}.copyright{flex-direction:column;gap:.35rem}}
   </style>
 </head>
@@ -230,7 +232,8 @@
       catch { return false; }
     }
 
-    /* CAROUSEL: semua kartu dibuat sekali dari CONFIG.SLIDES, lalu hanya atribut data-pos yang diubah agar transisi CSS bisa meluncur. */
+    /* CAROUSEL RENDERING: build slides and controls only from CONFIG.SLIDES. */
+    /* CAROUSEL RENDERING: create each slide once, then animate position-state updates. */
     const spotlight = document.getElementById("spotlight-carousel");
     const carouselStage = document.getElementById("carousel-stage");
     const carouselDots = document.getElementById("carousel-dots");
@@ -242,17 +245,11 @@
     let focusInsideCarousel = false;
     let interactionTimeout = null;
     let transientPauseTimeout = null;
+    let fadeTimeout = null;
 
     function wrapSlide(index) {
       const count = CONFIG.SLIDES.length;
       return count ? (index % count + count) % count : 0;
-    }
-    /* Arah terpendek menuju slide tujuan: 1 = maju (kartu bergerak ke kiri), -1 = mundur. */
-    function directionTo(index) {
-      const total = CONFIG.SLIDES.length;
-      if (!total) return 1;
-      const forward = wrapSlide(index - activeSlide);
-      return forward <= total - forward ? 1 : -1;
     }
     function updateCarouselControls() {
       carouselToggle.textContent = autoplayEnabled ? "Jeda" : "Putar";
@@ -263,13 +260,16 @@
         dot.type = "button"; dot.className = "carousel-dot";
         dot.setAttribute("aria-label", `Tampilkan sorotan ${index + 1}: ${slide.title}`);
         if (index === activeSlide) dot.setAttribute("aria-current", "true");
+        dot.addEventListener("click", () => { pauseForInteraction(); showSlide(index); spotlight.focus({ preventScroll: true }); });
         dot.addEventListener("click", () => { pauseForInteraction(); showSlide(index, directionTo(index)); spotlight.focus({ preventScroll: true }); });
         carouselDots.append(dot);
       });
     }
+    function createSpotlightCard(index, position) {
     function createSpotlightCard(index) {
       const slide = CONFIG.SLIDES[index];
       const card = document.createElement("article");
+      card.className = `spotlight-card ${position === "center" ? "is-active" : "is-side"}`;
       card.className = "spotlight-card";
       card.dataset.index = String(index);
       card.dataset.pos = "hidden-right";
@@ -277,12 +277,18 @@
       card.setAttribute("aria-roledescription", "slide");
       card.setAttribute("aria-label", `Sorotan ${index + 1} dari ${CONFIG.SLIDES.length}: ${slide.title}`);
 
-      /* Tombol transparan di atas kartu samping: klik untuk menjadikannya kartu utama (disembunyikan CSS saat kartu aktif). */
+      if (position !== "center") {
+        const select = document.createElement("button");
+        select.type = "button"; select.className = "side-select";
+        select.setAttribute("aria-label", `Jadikan ${slide.title} sorotan utama`);
+        select.addEventListener("click", () => { pauseForInteraction(); showSlide(index); spotlight.focus({ preventScroll: true }); });
+        card.append(select);
       const select = document.createElement("button");
       select.type = "button"; select.className = "side-select";
       select.setAttribute("aria-label", `Jadikan ${slide.title} sorotan utama`);
       select.addEventListener("click", () => { pauseForInteraction(); showSlide(index, directionTo(index)); spotlight.focus({ preventScroll: true }); });
       card.append(select);
+      }
 
       const imageArea = document.createElement("div");
       imageArea.className = "spotlight-image";
@@ -309,7 +315,7 @@
       card.append(imageArea, copy, bottom);
       return card;
     }
-    /* Posisi target tiap kartu: active, next, prev, atau hidden-left/hidden-right (menunggu di luar panggung). */
+    function paintSpotlight() {
     function targetPositions(centerIndex) {
       const total = CONFIG.SLIDES.length;
       const positions = Array(total).fill("hidden-right");
@@ -331,7 +337,6 @@
       card.setAttribute("aria-hidden", String(isHidden));
       card.inert = isHidden;
     }
-    /* Pindahkan semua kartu ke posisi baru. Kartu yang melompat dari satu ujung ke ujung lain disembunyikan dulu (jump-*) agar tidak terbang melintasi panggung. */
     function updateSlidePositions(centerIndex, direction = 1, animate = true) {
       const positions = targetPositions(centerIndex);
       const jumps = [];
@@ -369,11 +374,31 @@
         updateCarouselControls();
         return;
       }
+      const previous = wrapSlide(activeSlide - 1);
+      const next = wrapSlide(activeSlide + 1);
+      const indices = CONFIG.SLIDES.length === 1 ? [[activeSlide, "center"]] : [[previous, "side"], [activeSlide, "center"], [next, "side"]];
+      indices.forEach(([index, position]) => carouselStage.append(createSpotlightCard(index, position)));
+      updateCarouselControls();
       CONFIG.SLIDES.forEach((slide, index) => carouselStage.append(createSpotlightCard(index)));
       updateSlidePositions(activeSlide, 1, false);
     }
+    function showSlide(index) {
+    function directionTo(index) {
+      const total = CONFIG.SLIDES.length;
+      if (!total) return 1;
+      const forward = wrapSlide(index - activeSlide);
+      const backward = total - forward;
+      return forward <= backward ? 1 : -1;
+    }
     function showSlide(index, direction = directionTo(index)) {
       if (!CONFIG.SLIDES.length) return;
+      activeSlide = wrapSlide(index);
+      carouselStage.classList.add("is-changing");
+      window.clearTimeout(fadeTimeout);
+      fadeTimeout = window.setTimeout(() => {
+        paintSpotlight();
+        requestAnimationFrame(() => carouselStage.classList.remove("is-changing"));
+      }, 75);
       updateSlidePositions(wrapSlide(index), direction, true);
     }
 
@@ -381,13 +406,15 @@
     function scheduleAutoplay() {
       window.clearTimeout(interactionTimeout);
       if (!autoplayEnabled || pointerInsideCarousel || focusInsideCarousel || !CONFIG.SLIDES.length || homePage.hidden) return;
-      interactionTimeout = window.setTimeout(() => { showSlide(activeSlide + 1, 1); scheduleAutoplay(); }, 4000);
+      interactionTimeout = window.setTimeout(() => { showSlide(activeSlide + 1); scheduleAutoplay(); }, 4000);
     }
     function pauseForInteraction() {
       window.clearTimeout(interactionTimeout);
       window.clearTimeout(transientPauseTimeout);
       transientPauseTimeout = window.setTimeout(scheduleAutoplay, 4500);
     }
+    document.getElementById("slide-previous").addEventListener("click", () => { pauseForInteraction(); showSlide(activeSlide - 1); });
+    document.getElementById("slide-next").addEventListener("click", () => { pauseForInteraction(); showSlide(activeSlide + 1); });
     document.getElementById("slide-previous").addEventListener("click", () => { pauseForInteraction(); showSlide(activeSlide - 1, -1); });
     document.getElementById("slide-next").addEventListener("click", () => { pauseForInteraction(); showSlide(activeSlide + 1, 1); });
     carouselToggle.addEventListener("click", () => {
@@ -402,6 +429,8 @@
       if (!spotlight.contains(event.relatedTarget)) { focusInsideCarousel = false; scheduleAutoplay(); }
     });
     spotlight.addEventListener("keydown", event => {
+      if (event.key === "ArrowLeft") { event.preventDefault(); pauseForInteraction(); showSlide(activeSlide - 1); }
+      if (event.key === "ArrowRight") { event.preventDefault(); pauseForInteraction(); showSlide(activeSlide + 1); }
       if (event.key === "ArrowLeft") { event.preventDefault(); pauseForInteraction(); showSlide(activeSlide - 1, -1); }
       if (event.key === "ArrowRight") { event.preventDefault(); pauseForInteraction(); showSlide(activeSlide + 1, 1); }
     });
@@ -410,6 +439,7 @@
     spotlight.addEventListener("touchend", event => {
       if (touchStartX === null) return;
       const deltaX = event.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(deltaX) > 45) { pauseForInteraction(); showSlide(activeSlide + (deltaX < 0 ? 1 : -1)); }
       if (Math.abs(deltaX) > 45) { pauseForInteraction(); const direction = deltaX < 0 ? 1 : -1; showSlide(activeSlide + direction, direction); }
       touchStartX = null;
     }, { passive: true });
@@ -417,13 +447,14 @@
     prefersReducedMotion.addEventListener?.("change", event => {
       if (event.matches) { autoplayEnabled = false; updateCarouselControls(); window.clearTimeout(interactionTimeout); }
     });
-    /* Kartu samping hanya bisa difokus/diklik bila terlihat pada ukuran layar saat ini. */
+    paintSpotlight();
+    renderSpotlightOnce();
+    /* Keep side cards keyboard-accessible only when visible at the current breakpoint. */
     window.addEventListener("resize", () => {
       [...carouselStage.children].forEach(card => {
-        if (card.dataset.pos && !card.dataset.pos.startsWith("jump-")) setCardPosition(card, card.dataset.pos);
+        if (!card.dataset.pos.startsWith("jump-")) setCardPosition(card, card.dataset.pos);
       });
     });
-    renderSpotlightOnce();
 
     /* DATA RENDERING: all user-editable text enters nodes through textContent. */
     function renderTypeChoices() {
