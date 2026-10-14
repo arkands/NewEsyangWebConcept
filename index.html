@@ -77,8 +77,81 @@
 
     /* CONTACT FORM: labels, inline validation and accessible status messages. */
     .contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;align-items:start;gap:clamp(2rem,6vw,5rem)}.contact-copy p{color:var(--muted)}.contact-card{padding:clamp(1.25rem,4vw,2rem);border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow)}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.field{display:flex;flex-direction:column;gap:.4rem}.field.full{grid-column:1/-1}.field label{color:var(--green);font-size:.78rem;font-weight:800}.field input,.field textarea{width:100%;padding:.75rem .85rem;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--paper);color:var(--ink)}.field textarea{min-height:110px;resize:vertical}.field input::placeholder,.field textarea::placeholder{color:#637b70}.form-note{margin:.9rem 0;color:var(--muted);font-size:.73rem}.contact-card>.btn{width:100%}.form-status{min-height:1.5em;margin:.7rem 0 0;font-size:.82rem;font-weight:700}.form-status[data-state="success"]{color:var(--green)}.form-status[data-state="error"]{color:var(--green-hover)}
-    /* BUY ROUTES: type choices and product cards stay within this same document. */
-    .buy-page{min-height:65vh;padding:clamp(3rem,7vw,5.5rem) 0}.buy-heading{max-width:720px;margin:0 auto 2rem;text-align:center}.buy-heading h1{margin:0 0 .8rem;color:var(--green);font:clamp(2.5rem,6vw,4rem)/1.08 var(--serif)}.buy-heading p{margin:0;color:var(--muted)}.type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;max-width:830px;margin:0 auto}.type-choice{min-height:185px;padding:clamp(1.4rem,4vw,2.2rem);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .18s,background .18s}.type-choice:hover{border-color:var(--green);background:var(--green-soft)}.type-choice strong{display:block;margin-bottom:.5rem;color:var(--green);font:1.8rem var(--serif)}.type-choice span{display:block;max-width:320px;color:var(--muted);font-size:.86rem}.type-choice .arrow{margin-top:1rem;color:var(--green);font-size:1rem}.buy-list-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.4rem}.back-button{min-height:44px;padding:.55rem .9rem;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--green);font-weight:700;cursor:pointer}.back-button:hover{background:var(--green-soft)}.buy-list-title{margin:0;color:var(--green);font:clamp(1.9rem,4vw,2.8rem)/1.15 var(--serif)}.filter-label{margin:0 0 .6rem;color:var(--muted);font-size:.78rem;font-weight:700}.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}.filter-chip{min-height:40px;padding:.45rem 1rem;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--green);font-size:.82rem;font-weight:700;cursor:pointer}.filter-chip:hover{border-color:var(--green)}.filter-chip[aria-pressed="true"]{border-color:var(--green);background:var(--green);color:var(--paper)}.buy-product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.buy-card{display:flex;min-width:0;flex-direction:column;padding:.75rem .75rem 1.2rem;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}.buy-image{min-height:210px;display:grid;place-items:center;overflow:hidden;border-radius:var(--r-sm);background:var(--green-soft);color:var(--green)}.buy-image img{display:block;width:100%;height:210px;object-fit:cover}.buy-placeholder{padding:1rem;font-size:.67rem;font-weight:800;letter-spacing:.15em;text-align:center}.buy-info{display:flex;flex:1;flex-direction:column;padding:1rem .35rem 0}.buy-category{margin:0 0 .3rem;color:var(--muted);font-size:.67rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.buy-name{margin:0 0 .55rem;color:var(--green);font:1.45rem/1.2 var(--serif)}.buy-note{margin:0 0 1rem;color:var(--muted);font-size:.79rem}.buy-bottom{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:auto}.buy-price{color:var(--green);font-size:.9rem;font-weight:800}.order-link{display:inline-flex;min-height:42px;align-items:center;justify-content:center;padding:.5rem .95rem;border:1px solid var(--green);border-radius:999px;background:var(--green);color:var(--paper);font-size:.8rem;font-weight:800;text-decoration:none}.order-link:hover{background:var(--green-hover)}.empty-state{grid-column:1/-1;padding:2rem 1.2rem;border:1px dashed var(--line);border-radius:var(--r-md);color:var(--muted);text-align:center}.empty-state strong{display:block;margin-bottom:.3rem;color:var(--green)}
+    /* ORDER FLOW (routes #/beli ...): progress indicator, screen heads, choice/package cards, Custom steppers, summary bar. */
+    .buy-page{min-height:65vh;padding:clamp(3rem,7vw,5.5rem) 0}
+    .buy-page [hidden]{display:none!important}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    .btn:disabled:hover{background:var(--green);transform:none}
+    /* 5-segment progress: finished steps are tinted, the current step is solid green. */
+    .flow-progress-wrap{max-width:830px;margin:0 auto 2rem}
+    .flow-progress-label{margin:0 0 .5rem;color:var(--muted);font-size:.74rem;font-weight:800;letter-spacing:.06em}
+    .flow-progress{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.4rem;margin:0;padding:0;list-style:none}
+    .flow-progress li{height:6px;border-radius:999px;background:var(--line);transition:background .25s ease}
+    .flow-progress li.is-done{background:rgba(0,66,37,.45)}
+    .flow-progress li[aria-current="step"]{background:var(--green)}
+    /* Screen shell and heading block. */
+    .flow-screen{max-width:830px;margin-inline:auto}
+    .flow-head{max-width:720px;margin:0 auto 2rem;text-align:center}
+    .flow-head h1{margin:0 0 .9rem;color:var(--green);font:clamp(2.1rem,5.5vw,3.5rem)/1.1 var(--serif);letter-spacing:-.02em;overflow-wrap:anywhere}
+    .flow-head .eyebrow{margin:0 0 var(--s2)}
+    .flow-text{margin:0 0 .8rem;color:var(--muted)}
+    .flow-tag{display:inline-block;margin:0 0 .9rem;padding:.3rem .85rem;border:1px solid var(--green);border-radius:999px;color:var(--green);font-size:.74rem;font-weight:800;letter-spacing:.06em}
+    .flow-question{margin:0 0 1rem;color:var(--green);font-weight:800;text-align:center}
+    .flow-footnote{margin:1.2rem 0;color:var(--muted);font-size:.8rem;text-align:center}
+    .flow-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:2rem}
+    .trace-note{max-width:720px;margin:0 auto 1.4rem;padding:.8rem 1rem;border-radius:var(--r-sm);background:var(--green-soft);color:var(--green);font-size:.8rem;font-weight:600;text-align:center}
+    /* Choice cards (Screen 0) and package cards (Screen 2) are real buttons. */
+    .choice-grid,.package-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+    .package-grid>:last-child:nth-child(odd){grid-column:1/-1}
+    .choice-card,.package-card{display:flex;min-width:0;flex-direction:column;gap:.5rem;padding:clamp(1.2rem,4vw,1.8rem);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .18s,background .18s}
+    .choice-card{min-height:200px}
+    .choice-card:hover,.package-card:hover{border-color:var(--green);background:var(--green-soft)}
+    .choice-card strong{color:var(--green);font:1.9rem/1.15 var(--serif)}
+    .package-card strong{color:var(--green);font:1.5rem/1.15 var(--serif);letter-spacing:.06em}
+    .choice-text,.package-desc{display:block;color:var(--muted);font-size:.86rem;overflow-wrap:anywhere}
+    .package-comp{display:block;color:var(--green);font-size:.8rem;font-weight:800}
+    .package-price{display:block;color:var(--green);font-size:.9rem;font-weight:800}
+    .choice-note{display:block;margin-top:.4rem;padding:.7rem .85rem;border-radius:var(--r-sm);background:var(--green-soft);color:var(--green);font-size:.78rem;font-weight:600}
+    .choice-card:hover .choice-note{background:var(--surface)}
+    .choice-arrow{margin-top:auto;padding-top:.5rem;color:var(--green)}
+    .custom-slot{margin-top:1rem}
+    .custom-slot .package-card{width:100%}
+    /* Screen 3: variants grouped by Way, bottle lines, quantity steppers. */
+    .way-group{margin-top:1.6rem}
+    .way-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin:0 0 .8rem;color:var(--green);font:1.5rem/1.2 var(--serif);letter-spacing:.06em}
+    .way-count{color:var(--muted);font:700 .75rem var(--sans);letter-spacing:.04em}
+    .bottle-list,.variant-list{display:grid;gap:.5rem;margin:0;padding:0;list-style:none}
+    .bottle-list li{padding:.7rem .95rem;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface);font-size:.86rem;overflow-wrap:anywhere}
+    .way-group.is-main .bottle-list li{border-color:var(--green)}
+    .variant-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:.8rem;padding:.7rem .9rem;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface)}
+    .variant-info{min-width:0}
+    .variant-code{display:block;color:var(--green);font-size:.95rem}
+    .variant-fruit{display:block;color:var(--muted);font-size:.76rem;overflow-wrap:anywhere}
+    .stepper{display:inline-flex;align-items:center;gap:.3rem}
+    .stepper button{width:44px;height:44px;display:grid;place-items:center;padding:0;border:1px solid var(--green);border-radius:50%;background:transparent;color:var(--green);font-size:1.3rem;line-height:1;cursor:pointer}
+    .stepper button:hover{background:var(--green-soft)}
+    .stepper button[aria-disabled="true"]{opacity:.35;cursor:not-allowed}
+    .stepper button[aria-disabled="true"]:hover{background:transparent}
+    .qty-value{min-width:2.2ch;color:var(--green);font-weight:800;text-align:center}
+    .custom-note{margin:1.4rem 0 0;color:var(--muted);font-size:.78rem}
+    /* Sticky summary bar for Custom: total, live status, back/order buttons. */
+    .summary-bar{position:sticky;bottom:max(.75rem,env(safe-area-inset-bottom,0px));z-index:20;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.7rem 1rem;margin-top:1.6rem;padding:.9rem 1.1rem;border:1.5px solid var(--green);border-radius:var(--r-md);background:var(--surface);box-shadow:0 -8px 30px rgba(0,66,37,.14)}
+    .summary-info{min-width:0;flex:1 1 180px}
+    .summary-total{margin:0;color:var(--green);font-weight:800}
+    .summary-total strong{font:1.9rem/1 var(--serif)}
+    .summary-price{margin-left:.6rem;font-size:.85rem}
+    .summary-status{min-height:1.4em;margin:.2rem 0 0;color:var(--muted);font-size:.8rem;font-weight:700}
+    .summary-actions{display:flex;flex:1 1 220px;gap:.6rem}
+    .summary-actions .btn{flex:1 1 0;min-width:0;padding-inline:.9rem}
+    /* Screen 4: confirmation and the copy-summary fallback. */
+    .order-notice{max-width:620px;margin:0 auto;padding:1.2rem;border:1px dashed var(--green);border-radius:var(--r-md);background:var(--surface)}
+    .order-notice p{margin:0 0 .8rem;color:var(--muted);font-size:.86rem}
+    .order-summary{margin:0 0 1rem;padding:.9rem 1rem;border-radius:var(--r-sm);background:var(--paper);color:var(--ink);font:.8rem/1.6 var(--sans);white-space:pre-wrap;overflow-wrap:anywhere}
+    .copy-status{margin:.7rem 0 0;color:var(--green);font-size:.82rem;font-weight:700}
+    /* Used by the carousel when CONFIG.SLIDES is empty. */
+    .empty-state{grid-column:1/-1;padding:2rem 1.2rem;border:1px dashed var(--line);border-radius:var(--r-md);color:var(--muted);text-align:center}
+    @media(max-width:700px){.choice-grid,.package-grid{grid-template-columns:1fr}.choice-card{min-height:0}.summary-actions{flex-basis:100%}}
     /* SHARED FOOTER: used for home and all Buy routes. */
     .site-footer{padding:3.2rem 0 1.2rem;background:var(--green);color:var(--paper)}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem}.footer-brand{color:var(--paper)}.footer-copy{max-width:340px;margin:.9rem 0 0;color:#d8e6dd;font-size:.8rem}.footer-title{margin:0 0 .8rem;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase}.footer-links{display:grid;justify-items:start;gap:.45rem}.footer-links a{color:#e5eee8;font-size:.8rem;text-decoration:none}.footer-links a:hover{text-decoration:underline}.copyright{display:flex;justify-content:space-between;gap:1rem;padding-top:1rem;border-top:1px solid rgba(244,248,251,.25);color:#d8e6dd;font-size:.68rem}
     /* PAGE TRANSITION AND SCROLL REVEAL: subtle motion with a reduced-motion fallback. */
@@ -86,12 +159,12 @@
     /* RESPONSIVE: adapt header, cards, forms, and footer to mobile and tablet widths. */
     @media(max-width:900px){.nav-links{gap:1rem}.hero-grid{gap:2rem}.hero-photo{min-height:390px}.about-grid,.contact-grid{gap:2rem}}
     @media(min-width:701px) and (max-width:900px){.spotlight-card{width:40%;min-width:0}}
-    @media(max-width:700px){.shell{width:min(var(--content),calc(100% - 32px))}.navbar{min-height:68px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:1rem 1.2rem 1.3rem;border-bottom:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:.25rem}.nav-links.is-open{display:flex}.nav-links a:not(.btn){padding:.65rem .5rem}.nav-links .btn{margin-top:.35rem}.hero{padding:3rem 0 4rem}.hero-grid{grid-template-columns:1fr;gap:2rem}.hero h1{font-size:clamp(3rem,14vw,4.7rem)}.hero-photo{min-height:340px}.section{padding:4rem 0}.about-grid,.contact-grid{grid-template-columns:1fr}.product-section-head{display:block}.product-section-head .section-intro{margin-top:.75rem}.category-grid{grid-template-columns:1fr}.category-photo{min-height:225px}.benefit-grid{grid-template-columns:1fr;gap:1.3rem}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.type-grid{grid-template-columns:1fr}.type-choice{min-height:155px}.buy-list-top{align-items:flex-start;flex-direction:column}.buy-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-grid{grid-template-columns:1fr 1fr;gap:1.8rem}.footer-grid>div:first-child{grid-column:1/-1}}
+    @media(max-width:700px){.shell{width:min(var(--content),calc(100% - 32px))}.navbar{min-height:68px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:1rem 1.2rem 1.3rem;border-bottom:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:.25rem}.nav-links.is-open{display:flex}.nav-links a:not(.btn){padding:.65rem .5rem}.nav-links .btn{margin-top:.35rem}.hero{padding:3rem 0 4rem}.hero-grid{grid-template-columns:1fr;gap:2rem}.hero h1{font-size:clamp(3rem,14vw,4.7rem)}.hero-photo{min-height:340px}.section{padding:4rem 0}.about-grid,.contact-grid{grid-template-columns:1fr}.product-section-head{display:block}.product-section-head .section-intro{margin-top:.75rem}.category-grid{grid-template-columns:1fr}.category-photo{min-height:225px}.benefit-grid{grid-template-columns:1fr;gap:1.3rem}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.footer-grid{grid-template-columns:1fr 1fr;gap:1.8rem}.footer-grid>div:first-child{grid-column:1/-1}}
     /* Mobile carousel: one full-size card slides horizontally and fades between states. */
     @media(max-width:700px){.spotlight-inner{padding-top:1.5rem}.carousel-stage{height:430px;margin-inline:-.5rem}.spotlight-card{display:block;grid-template-columns:1fr;grid-template-rows:auto auto auto;width:min(88%,430px);min-width:0;min-height:0;transform:translate3d(-50%,-50%,0) scale(.94)}.spotlight-card[data-pos="active"]{transform:translate3d(-50%,-50%,0) scale(1);box-shadow:0 16px 40px rgba(0,66,37,.14)}.spotlight-card[data-pos="prev"]{--shift:-105%;opacity:0;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="next"]{--shift:105%;opacity:0;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="prev"]:hover,.spotlight-card[data-pos="next"]:hover{opacity:0;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="hidden-left"]{--shift:-190%;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-card[data-pos="hidden-right"]{--shift:190%;transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(.94)}.spotlight-image{grid-column:auto;grid-row:auto;height:190px;min-height:190px}.spotlight-card[data-pos="active"] .spotlight-image{height:210px;min-height:210px}.spotlight-copy{grid-column:auto;grid-row:auto;padding:1rem 1rem .75rem}.spotlight-card[data-pos="active"] .spotlight-copy h3{font-size:1.65rem}.spotlight-bottom{grid-column:auto;grid-row:auto}.carousel-controls{grid-template-columns:auto 1fr auto;gap:.7rem}.carousel-dots{gap:.4rem}.carousel-dot{width:8px;height:8px}.carousel-dot[aria-current="true"]{width:20px}.play-toggle{padding:.4rem .65rem;font-size:.68rem}}
     /* Reduced motion: preserve a 450ms translation/fade for manual carousel navigation, without scaling or hover lift. */
     @media(prefers-reduced-motion:reduce){.spotlight-card{transition:transform 450ms cubic-bezier(.22,1,.36,1),opacity 450ms cubic-bezier(.22,1,.36,1)!important}.spotlight-card[data-pos="active"]{transform:translate3d(-50%,-50%,0) scale(1)}.spotlight-card[data-pos="prev"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="next"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="hidden-left"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="hidden-right"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="jump-left"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="jump-right"]{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}.spotlight-card[data-pos="prev"]:hover,.spotlight-card[data-pos="next"]:hover{transform:translate3d(calc(-50% + var(--shift)),-50%,0) scale(1)}}
-    @media(max-width:480px){.buy-product-grid{grid-template-columns:1fr}.buy-image,.buy-image img{height:230px;min-height:230px}.copyright{flex-direction:column;gap:.35rem}}
+    @media(max-width:480px){.copyright{flex-direction:column;gap:.35rem}}
   </style>
 </head>
 <body>
@@ -146,18 +219,101 @@
       </div></section>
     </div>
 
-    <!-- BUY PAGE: type selection or data-driven product list, routed by URL hash. -->
+    <!-- BUY PAGE: multi-screen order flow. Only one .flow-screen is visible at a time (JS toggles [hidden]); routes are #/beli ... #/beli/selesai. -->
     <div class="page" id="buy-page" hidden>
-      <section class="buy-page shell" aria-labelledby="buy-main-heading">
-        <div id="buy-type-view">
-          <div class="buy-heading"><p class="eyebrow">Belanja Esyang</p><h1 id="buy-main-heading" tabindex="-1">Pilih tipe produk</h1><p>Pilih daftar yang paling sesuai dengan kebutuhanmu.</p></div>
-          <div class="type-grid" id="type-grid"></div>
+      <section class="buy-page shell" aria-label="Alur pemesanan Esyang">
+        <!-- 5-segment progress indicator: screens 0-4 map to steps 1-5. -->
+        <div class="flow-progress-wrap">
+          <p class="flow-progress-label" id="flow-progress-label" aria-hidden="true"></p>
+          <ol class="flow-progress" id="flow-progress" aria-label="Langkah pemesanan"><li><span class="sr-only">Langkah 1</span></li><li><span class="sr-only">Langkah 2</span></li><li><span class="sr-only">Langkah 3</span></li><li><span class="sr-only">Langkah 4</span></li><li><span class="sr-only">Langkah 5</span></li></ol>
         </div>
-        <div id="buy-list-view" hidden>
-          <div class="buy-list-top"><button class="back-button" id="buy-back" type="button"><span aria-hidden="true">←</span> Kembali</button><h1 class="buy-list-title" id="buy-list-heading" tabindex="-1"></h1></div>
-          <p class="filter-label" id="filter-label">Pilih kategori</p>
-          <div class="filters" id="filter-list" role="group" aria-labelledby="filter-label"></div>
-          <div class="buy-product-grid" id="buy-products" aria-live="polite"></div>
+
+        <!-- SCREEN 0: Sebelum masuk (choose Routine or Element). -->
+        <div class="flow-screen" id="screen-0" data-title="Sebelum masuk" hidden>
+          <div class="flow-head">
+            <p class="eyebrow">Sebelum masuk</p>
+            <h1 tabindex="-1">Di dunia Esyang, kamu akan memilih sendiri.</h1>
+            <p class="flow-text">Sebelum masuk, satu pertanyaan dulu agar pilihanmu pas.</p>
+          </div>
+          <p class="flow-question" id="question-mode">Apakah kamu menghindari gula pasir, bahan susu (Dairy), atau keduanya?</p>
+          <div class="choice-grid" role="group" aria-labelledby="question-mode">
+            <button class="choice-card" type="button" data-mode-choice="routine"><strong>Tidak</strong><span class="choice-text">Pilihanmu mencakup semua varian Esyang, termasuk yang memakai gula pasir atau bahan susu (Dairy). Pilihan ini disebut Routine.</span><span class="choice-arrow" aria-hidden="true">→</span></button>
+            <button class="choice-card" type="button" data-mode-choice="element"><strong>Ya</strong><span class="choice-text">Pilihanmu hanya mencakup varian Esyang tanpa gula pasir dan tanpa bahan susu (Dairy-Free), baik kamu menghindari salah satunya maupun keduanya. Pilihan ini disebut Element.</span><span class="choice-note" data-trace-note></span><span class="choice-arrow" aria-hidden="true">→</span></button>
+          </div>
+        </div>
+
+        <!-- SCREEN 1: Apa kabarmu, Tubuh? -->
+        <div class="flow-screen" id="screen-1" data-title="Apa kabarmu, Tubuh?" hidden>
+          <div class="flow-head">
+            <p class="flow-tag" id="s1-tag"></p>
+            <h1 tabindex="-1">Apa kabarmu, Tubuh?</h1>
+            <p class="flow-text">Tubuhmu sudah lama menunggu untuk ditanya. Tubuh tidak instan, jadi mendengarkannya perlu dilatih. Dan tubuh bukan mesin: ia tidak hidup dari satu hal saja.</p>
+            <p class="flow-text">Di Esyang, kamu memilih paket yang berisi satu pengalaman (Way) utama untuk pekan ini. Pengalaman (Way) lainnya tetap ikut hadir.</p>
+          </div>
+          <div class="flow-actions"><button class="btn btn-outline" type="button" id="s1-change">Ganti pilihan</button><button class="btn" type="button" id="s1-next">Lanjut</button></div>
+        </div>
+
+        <!-- SCREEN 2: Find your way in (package cards + Custom card). -->
+        <div class="flow-screen" id="screen-2" data-title="Find your way in" hidden>
+          <div class="flow-head">
+            <p class="eyebrow">Find your way in</p>
+            <p class="flow-tag" id="s2-tag"></p>
+            <h1 tabindex="-1">Apa yang paling terasa di tubuhmu untuk sepekan ke depan?</h1>
+            <p class="flow-text">Pilih paketnya. Tidak harus 100% benar. Tubuh dilatih, bukan dikejar kesempurnaannya. Yang dituju adalah keselarasan dengan tubuhmu.</p>
+          </div>
+          <p class="trace-note" data-trace-note data-element-only hidden></p>
+          <div class="package-grid" id="package-grid"></div>
+          <p class="flow-footnote" id="package-footnote"></p>
+          <div class="custom-slot" id="custom-slot"></div>
+          <div class="flow-actions"><button class="btn btn-outline" type="button" id="s2-back">Kembali</button></div>
+        </div>
+
+        <!-- SCREEN 3a: Paket muncul (selected package, generated from data). -->
+        <div class="flow-screen" id="screen-3a" data-title="Paket muncul" hidden>
+          <div class="flow-head">
+            <p class="flow-tag" id="s3a-tag"></p>
+            <h1 tabindex="-1">Paket muncul</h1>
+            <p class="flow-text" id="s3a-text"></p>
+          </div>
+          <p class="trace-note" data-trace-note data-element-only hidden></p>
+          <div id="s3a-list"></div>
+          <div class="flow-actions"><button class="btn btn-outline" type="button" id="s3a-back">Ganti paket</button><button class="btn" type="button" id="s3a-order"></button></div>
+        </div>
+
+        <!-- SCREEN 3b: Custom (variant steppers + sticky summary bar). -->
+        <div class="flow-screen" id="screen-3b" data-title="Susun sendiri pesananmu" hidden>
+          <div class="flow-head">
+            <p class="flow-tag" id="s3b-tag"></p>
+            <h1 tabindex="-1">Susun sendiri pesananmu</h1>
+            <p class="flow-text" id="s3b-text"></p>
+          </div>
+          <p class="trace-note" data-trace-note data-element-only hidden></p>
+          <div id="s3b-list"></div>
+          <p class="custom-note">Setiap varian dilengkapi komposisi yang totalnya 100%: (…% Real Fruit, …% [lainnya]).</p>
+          <div class="summary-bar" id="summary-bar">
+            <div class="summary-info">
+              <p class="summary-total"><strong id="custom-total">0</strong> botol<span class="summary-price" id="custom-price" hidden></span></p>
+              <p class="summary-status" id="custom-status" aria-live="polite"></p>
+            </div>
+            <div class="summary-actions"><button class="btn btn-outline" type="button" id="s3b-back">Kembali</button><button class="btn" type="button" id="s3b-order" disabled>Pesan</button></div>
+          </div>
+        </div>
+
+        <!-- SCREEN 4: Setelah memesan (only valid right after placing an order). -->
+        <div class="flow-screen" id="screen-4" data-title="Real Fruit, Your Own Journey" hidden>
+          <div class="flow-head">
+            <h1 tabindex="-1">Real Fruit, Your Own Journey.</h1>
+            <p class="flow-text">Nikmati perjalanan sepekan ke depan dengan buah asli. Dengarkan apa yang tubuhmu sampaikan, walaupun pelan.</p>
+            <p class="flow-text" id="done-text"></p>
+          </div>
+          <!-- Shown only while CONFIG.WHATSAPP_NUMBER is still the placeholder. -->
+          <div class="order-notice" id="order-notice" hidden>
+            <p>Nomor WhatsApp Esyang belum dipasang di situs ini, jadi pesananmu belum terkirim. Salin ringkasan pesanan di bawah, lalu kirimkan ke Esyang.</p>
+            <pre class="order-summary" id="order-summary"></pre>
+            <button class="btn btn-outline" type="button" id="copy-summary">Salin ringkasan pesanan</button>
+            <p class="copy-status" id="copy-status" aria-live="polite"></p>
+          </div>
+          <div class="flow-actions"><a class="btn" href="#/" data-route="/">Kembali ke beranda</a></div>
         </div>
       </section>
     </div>
@@ -180,7 +336,8 @@
       ORDER_URL: "https://example.com/pesan",
       FORM_ENDPOINT: "https://script.google.com/macros/s/REPLACE_WITH_YOUR_DEPLOYMENT_ID/exec",
       INSTAGRAM_URL: "https://instagram.com/",
-      CATEGORIES: ["Popsicle", "Pure Smoothie", "Lemonade"],
+      // Nomor WhatsApp tujuan pesanan, hanya angka dengan kode negara (contoh: "628123456789"). Selama masih placeholder, halaman selesai menampilkan tombol salin ringkasan.
+      WHATSAPP_NUMBER: "62XXXXXXXXXX",
       SLIDES: [
         { title: "Popsicle", description: "Es buah praktis untuk dinikmati kapan saja.", icon: "◒", image: "", linkLabel: "Lihat popsicle", route: "/beli" },
         { title: "Pure Smoothie", description: "Buah dalam tekstur lembut yang mudah dinikmati.", icon: "◍", image: "", linkLabel: "Lihat smoothie", route: "/beli" },
@@ -188,37 +345,94 @@
         { title: "Kenapa Esyang", description: "Buah sungguhan, komposisi sederhana, dibuat penuh perhatian.", icon: "✳", image: "", linkLabel: "Baca cerita kami", route: "/" },
         { title: "Siap dinikmati", description: "Disiapkan beku. Simpan dan sajikan sesuai petunjuk.", icon: "◇", image: "", linkLabel: "Pesan sekarang", route: "/beli" }
       ],
-      TYPES: {
-        pantangan: { title: "Pantangan", description: "Pilih daftar ini jika ada bahan tertentu yang ingin kamu hindari." },
-        bebas: { title: "Tidak ada pantangan", description: "Pilih daftar ini jika kamu tidak memiliki pantangan bahan tertentu." }
+      ORDER_FLOW: {
+        PACKAGE_SIZE: 8,          // botol per paket
+        BOTTLE_ML: 250,           // ukuran botol (ml)
+        CUSTOM_MIN: 8,            // minimal pesanan Custom (harus kelipatan PACKAGE_SIZE)
+        MAX_PER_VARIANT: 99,      // batas jumlah per varian di Custom
+        PRICE_PER_PACKAGE: null,  // angka (Rupiah) untuk menampilkan harga paket; null = tidak tampil
+        PRICE_PER_BOTTLE: null,   // angka (Rupiah) untuk total Custom; null = tidak tampil
+        WAYS: {
+          pure: { label: "Pure", description: "Sederhana, apa adanya. Buah saja." },
+          comfort: { label: "Comfort", description: "Akrab. Buah dengan bahan yang sudah kamu kenal, termasuk gula pasir atau bahan susu (Dairy)." },
+          clean: { label: "Clean", description: "Manis secukupnya, dari yang alami. Buah dengan pemanis alami, misalnya madu." },
+          explore: { label: "Explore", description: "Ingin tahu. Buah bertemu bahan nabati lain, misalnya sayur, seed, & herb." }
+        },
+        MODES: {
+          routine: {
+            label: "Routine",
+            ways: ["pure", "comfort", "clean", "explore"],
+            // Isi paket (jumlah botol per Way). Urutan tulisan = urutan tampil di kartu paket.
+            packages: {
+              pure: { pure: 4, explore: 2, clean: 1, comfort: 1 },
+              comfort: { comfort: 4, clean: 2, pure: 1, explore: 1 },
+              clean: { clean: 4, comfort: 2, pure: 1, explore: 1 },
+              explore: { explore: 4, pure: 2, clean: 1, comfort: 1 }
+            },
+            customIntro: "Pilihanmu mencakup semua varian Esyang, termasuk yang memakai gula pasir atau bahan susu (Dairy)"
+          },
+          element: {
+            label: "Element",
+            ways: ["pure", "clean", "explore"],
+            packages: {
+              pure: { pure: 4, explore: 2, clean: 2 },
+              clean: { clean: 4, pure: 2, explore: 2 },
+              explore: { explore: 4, pure: 2, clean: 2 }
+            },
+            customIntro: "Pilihanmu hanya mencakup varian Esyang tanpa gula pasir dan tanpa bahan susu (Dairy-Free), baik kamu menghindari salah satunya maupun keduanya",
+            traceNote: "Catatan: produk di pilihan Element diproduksi pada lini yang sama dengan produk berbahan susu, sehingga kemungkinan jejak susu tetap ada."
+          }
+        }
       },
-      PRODUCTS: {
-        pantangan: [
-          { name: "Popsicle Varian 1", category: "Popsicle", price: "Rp 00.000", image: "", note: "Placeholder produk. Perbarui detail bahan sebelum ditampilkan." },
-          { name: "Pure Smoothie Varian 1", category: "Pure Smoothie", price: "Rp 00.000", image: "", note: "Placeholder produk. Perbarui detail bahan sebelum ditampilkan." }
-        ],
-        bebas: [
-          { name: "Popsicle Varian 1", category: "Popsicle", price: "Rp 00.000", image: "", note: "Rasa buah pilihan untuk dinikmati dingin." },
-          { name: "Pure Smoothie Varian 1", category: "Pure Smoothie", price: "Rp 00.000", image: "", note: "Pure smoothie buah untuk teman harian." },
-          { name: "Lemonade Varian 1", category: "Lemonade", price: "Rp 00.000", image: "", note: "Minuman lemon segar untuk menemani aktivitas." }
-        ]
+      /* VARIAN PEKANAN: perbarui bagian ini setiap pekan.
+         - Ganti name dan fruit tiap varian dengan data pekan baru (code dipakai di ringkasan pesanan, jadi harus unik).
+         - Setiap Way berisi 6 varian dengan urutan tetap. Paket memakai N varian PERTAMA dari tiap Way (N = jumlah botol di paket).
+         - Routine memakai 4 Way (24 varian); Element memakai Pure, Clean, Explore (18 varian).
+         - Perbarui juga CUTOFF_TEXT jika batas pemesanan berubah. */
+      WEEK: {
+        CUTOFF_TEXT: "Kamis 16.00",
+        VARIANTS: {
+          pure: [
+            { code: "A-pure", name: "Varian A-pure", fruit: "100% Real Fruit" },
+            { code: "B-pure", name: "Varian B-pure", fruit: "100% Real Fruit" },
+            { code: "C-pure", name: "Varian C-pure", fruit: "100% Real Fruit" },
+            { code: "D-pure", name: "Varian D-pure", fruit: "100% Real Fruit" },
+            { code: "E-pure", name: "Varian E-pure", fruit: "100% Real Fruit" },
+            { code: "F-pure", name: "Varian F-pure", fruit: "100% Real Fruit" }
+          ],
+          comfort: [
+            { code: "A-comfort", name: "Varian A-comfort", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "B-comfort", name: "Varian B-comfort", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "C-comfort", name: "Varian C-comfort", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "D-comfort", name: "Varian D-comfort", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "E-comfort", name: "Varian E-comfort", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "F-comfort", name: "Varian F-comfort", fruit: "…% Real Fruit, …% [lainnya]" }
+          ],
+          clean: [
+            { code: "A-clean", name: "Varian A-clean", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "B-clean", name: "Varian B-clean", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "C-clean", name: "Varian C-clean", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "D-clean", name: "Varian D-clean", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "E-clean", name: "Varian E-clean", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "F-clean", name: "Varian F-clean", fruit: "…% Real Fruit, …% [lainnya]" }
+          ],
+          explore: [
+            { code: "A-explore", name: "Varian A-explore", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "B-explore", name: "Varian B-explore", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "C-explore", name: "Varian C-explore", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "D-explore", name: "Varian D-explore", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "E-explore", name: "Varian E-explore", fruit: "…% Real Fruit, …% [lainnya]" },
+            { code: "F-explore", name: "Varian F-explore", fruit: "…% Real Fruit, …% [lainnya]" }
+          ]
+        }
       }
     };
 
-    /* ROUTER ELEMENTS: cache page areas and keep the Buy selection state. */
+    /* ROUTER ELEMENTS: cache page areas and the shared navigation. */
     const homePage = document.getElementById("home-page");
     const buyPage = document.getElementById("buy-page");
-    const buyTypeView = document.getElementById("buy-type-view");
-    const buyListView = document.getElementById("buy-list-view");
-    const buyMainHeading = document.getElementById("buy-main-heading");
-    const buyListHeading = document.getElementById("buy-list-heading");
-    const typeGrid = document.getElementById("type-grid");
-    const filterList = document.getElementById("filter-list");
-    const buyProducts = document.getElementById("buy-products");
     const menuToggle = document.querySelector(".menu-toggle");
     const navLinks = document.getElementById("primary-links");
-    let activeType = null;
-    let activeCategory = "Semua";
     let pendingHomeSection = null;
 
     /* SAFE URL HELPERS: allow standard web links only for external destinations and images. */
@@ -434,66 +648,282 @@
       });
     });
 
-    /* DATA RENDERING: all user-editable text enters nodes through textContent. */
-    function renderTypeChoices() {
-      typeGrid.replaceChildren();
-      Object.entries(CONFIG.TYPES).forEach(([key, type]) => {
-        const button = document.createElement("button");
-        button.type = "button"; button.className = "type-choice";
-        const title = document.createElement("strong"); title.textContent = type.title;
-        const description = document.createElement("span"); description.textContent = type.description;
-        const arrow = document.createElement("span"); arrow.className = "arrow"; arrow.setAttribute("aria-hidden", "true"); arrow.textContent = "→";
-        button.append(title, description, arrow);
-        button.addEventListener("click", () => navigate(`/beli/${key}`));
-        typeGrid.append(button);
+    /* ORDER FLOW STATE: memory only (no localStorage). The mode always comes from the URL; quantities live here. */
+    const ORDER = CONFIG.ORDER_FLOW;
+    const WEEK = CONFIG.WEEK;
+    const WAY_TIE_ORDER = ["pure", "clean", "comfort", "explore"]; // tie-break when two Ways have the same bottle count
+    const orderState = { mode: null, pkg: null, qty: {}, placed: false, summary: "", whatsappOpened: false };
+    const byId = id => document.getElementById(id);
+    const flowScreens = [...document.querySelectorAll(".flow-screen")];
+    const flowProgress = byId("flow-progress");
+    const flowProgressLabel = byId("flow-progress-label");
+    const flowEls = {
+      s1Tag: byId("s1-tag"), s2Tag: byId("s2-tag"), packageGrid: byId("package-grid"), packageFootnote: byId("package-footnote"), customSlot: byId("custom-slot"),
+      s3aTag: byId("s3a-tag"), s3aText: byId("s3a-text"), s3aList: byId("s3a-list"), s3aOrder: byId("s3a-order"),
+      s3bTag: byId("s3b-tag"), s3bText: byId("s3b-text"), s3bList: byId("s3b-list"), customTotal: byId("custom-total"), customPrice: byId("custom-price"), customStatus: byId("custom-status"), s3bOrder: byId("s3b-order"),
+      doneText: byId("done-text"), orderNotice: byId("order-notice"), orderSummary: byId("order-summary"), copyStatus: byId("copy-status")
+    };
+    let qtyRefs = {}; // code -> { value, minus, plus } for in-place updates on Screen 3b
+
+    /* ORDER FLOW HELPERS: small pure functions that read CONFIG. */
+    function has(object, key) { return Object.prototype.hasOwnProperty.call(object, key); }
+    function makeEl(tag, className, text) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      if (text !== undefined) node.textContent = text;
+      return node;
+    }
+    function getMode(mode) { return ORDER.MODES[mode]; }
+    function wayLabel(way) { return ORDER.WAYS[way].label; }
+    function wayUpper(way) { return wayLabel(way).toUpperCase(); }
+    function isPrice(value) { return typeof value === "number" && Number.isFinite(value); }
+    function formatRupiah(value) { return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 }).format(value); }
+    function joinWithDan(items) {
+      if (items.length < 2) return items.join("");
+      if (items.length === 2) return `${items[0]} dan ${items[1]}`;
+      return `${items.slice(0, -1).join(", ")}, dan ${items[items.length - 1]}`;
+    }
+    function compositionText(composition) { return Object.entries(composition).map(([way, count]) => `${count} ${wayLabel(way)}`).join(", "); }
+    /* Main Way first, then the others by bottle count (high to low), ties by WAY_TIE_ORDER. */
+    function packageWays(mode, pkg) {
+      const composition = getMode(mode).packages[pkg];
+      const others = Object.keys(composition).filter(way => way !== pkg).sort((a, b) => composition[b] - composition[a] || WAY_TIE_ORDER.indexOf(a) - WAY_TIE_ORDER.indexOf(b));
+      return [pkg, ...others];
+    }
+    function customDescription(mode) {
+      const m = getMode(mode);
+      return `Susun sendiri pesananmu. ${m.customIntro}: ${joinWithDan(m.ways.map(wayLabel))}. Pilih satu per satu dari varian yang tersedia pekan ini. Pemesanan Custom minimal ${ORDER.CUSTOM_MIN} botol dan kelipatan ${ORDER.PACKAGE_SIZE}.`;
+    }
+    function setMode(mode) {
+      if (orderState.mode !== mode) { orderState.mode = mode; orderState.qty = {}; } // quantities belong to one mode
+    }
+
+    /* ORDER SUMMARY: plain-text Indonesian message used for WhatsApp or the copy fallback. */
+    function buildSummary(mode, packageLine, lines) {
+      return ["Halo Esyang, saya mau pesan:", `Pilihan: ${getMode(mode).label}`, `Paket: ${packageLine}`, ...lines].join("\n");
+    }
+    function packageSummary(mode, pkg) {
+      const composition = getMode(mode).packages[pkg];
+      const lines = packageWays(mode, pkg).map(way => `- ${wayLabel(way)}: ${WEEK.VARIANTS[way].slice(0, composition[way]).map(variant => `${variant.code} 1`).join(", ")}`);
+      return buildSummary(mode, `${wayUpper(pkg)} (${ORDER.PACKAGE_SIZE} botol @${ORDER.BOTTLE_ML} ml)`, lines);
+    }
+    function customSummary() {
+      const m = getMode(orderState.mode);
+      const lines = [];
+      m.ways.forEach(way => {
+        const picked = WEEK.VARIANTS[way].filter(variant => (orderState.qty[variant.code] || 0) > 0);
+        if (picked.length) lines.push(`- ${wayLabel(way)}: ${picked.map(variant => `${variant.code} ${orderState.qty[variant.code]}`).join(", ")}`);
       });
+      return buildSummary(orderState.mode, `CUSTOM (${customTotal()} botol @${ORDER.BOTTLE_ML} ml)`, lines);
     }
-    function renderFilters(products) {
-      filterList.replaceChildren();
-      const fromProducts = products.map(product => product.category).filter(Boolean);
-      const categories = [...new Set([...(CONFIG.CATEGORIES || []), ...fromProducts])];
-      ["Semua", ...categories].forEach(category => {
-        const chip = document.createElement("button");
-        chip.type = "button"; chip.className = "filter-chip"; chip.textContent = category;
-        chip.setAttribute("aria-pressed", String(activeCategory === category));
-        chip.addEventListener("click", () => { activeCategory = category; renderFilters(products); renderProducts(products); });
-        filterList.append(chip);
-      });
+    function customTotal() {
+      return getMode(orderState.mode).ways.reduce((sum, way) => sum + WEEK.VARIANTS[way].reduce((inner, variant) => inner + (orderState.qty[variant.code] || 0), 0), 0);
     }
-    function productImage(product) {
-      const frame = document.createElement("div"); frame.className = "buy-image";
-      if (safeImageUrl(product.image)) {
-        const image = document.createElement("img"); image.src = product.image; image.alt = `Foto ${product.name}`; image.loading = "lazy";
-        image.addEventListener("error", () => { frame.replaceChildren(); frame.append(makePlaceholder()); }, { once: true });
-        frame.append(image);
-      } else frame.append(makePlaceholder());
-      return frame;
-    }
-    function makePlaceholder() {
-      const placeholder = document.createElement("span"); placeholder.className = "buy-placeholder"; placeholder.textContent = "PLACEHOLDER FOTO PRODUK"; return placeholder;
-    }
-    function renderProducts(products) {
-      buyProducts.replaceChildren();
-      const visible = products.filter(product => activeCategory === "Semua" || product.category === activeCategory);
-      if (!visible.length) {
-        const empty = document.createElement("div"); empty.className = "empty-state";
-        const title = document.createElement("strong"); title.textContent = "Belum ada produk untuk pilihan ini.";
-        const message = document.createElement("span"); message.textContent = "Coba kategori lain atau kembali untuk melihat pilihan lainnya.";
-        empty.append(title, message); buyProducts.append(empty); return;
+
+    /* ORDER ACTION: open WhatsApp when a real number is configured; otherwise Screen 4 shows the copy fallback. */
+    function placeOrder(summary) {
+      const number = String(CONFIG.WHATSAPP_NUMBER || "").replace(/[\s+-]/g, "");
+      const configured = /^\d{8,15}$/.test(number);
+      orderState.summary = summary;
+      orderState.whatsappOpened = configured;
+      orderState.placed = true;
+      if (configured) {
+        const link = document.createElement("a");
+        link.href = `https://wa.me/${number}?text=${encodeURIComponent(summary)}`;
+        link.target = "_blank"; link.rel = "noopener noreferrer";
+        document.body.append(link); link.click(); link.remove();
       }
-      visible.forEach(product => {
-        const card = document.createElement("article"); card.className = "buy-card";
-        const info = document.createElement("div"); info.className = "buy-info";
-        const category = document.createElement("p"); category.className = "buy-category"; category.textContent = product.category || "Produk";
-        const name = document.createElement("h2"); name.className = "buy-name"; name.textContent = product.name;
-        info.append(category, name);
-        if (product.note) { const note = document.createElement("p"); note.className = "buy-note"; note.textContent = product.note; info.append(note); }
-        const bottom = document.createElement("div"); bottom.className = "buy-bottom";
-        const price = document.createElement("span"); price.className = "buy-price"; price.textContent = product.price;
-        const order = document.createElement("a"); order.className = "order-link"; order.href = safeWebUrl(CONFIG.ORDER_URL); order.target = "_blank"; order.rel = "noopener noreferrer"; order.textContent = "Pesan";
-        order.setAttribute("aria-label", `Pesan ${product.name} melalui aplikasi pemesanan`);
-        bottom.append(price, order); info.append(bottom); card.append(productImage(product), info); buyProducts.append(card);
+      navigate("/beli/selesai");
+    }
+    function legacyCopy(text) {
+      const area = document.createElement("textarea");
+      area.value = text; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.top = "-1000px";
+      document.body.append(area); area.select();
+      let copied = false;
+      try { copied = document.execCommand("copy"); } catch { copied = false; }
+      area.remove();
+      return copied;
+    }
+    async function copySummary() {
+      let copied = false;
+      try { await navigator.clipboard.writeText(orderState.summary); copied = true; }
+      catch { copied = legacyCopy(orderState.summary); }
+      flowEls.copyStatus.textContent = copied ? "Ringkasan pesanan disalin." : "Belum bisa menyalin otomatis. Pilih teks ringkasan di atas lalu salin manual.";
+    }
+
+    /* SCREEN RENDERERS: all config-driven text goes through textContent. */
+    function renderScreenOne() {
+      flowEls.s1Tag.textContent = `Pilihan: ${getMode(orderState.mode).label}`;
+    }
+    function renderScreenTwo(mode) {
+      const m = getMode(mode);
+      flowEls.s2Tag.textContent = `Pilihan ${m.label}.`;
+      flowEls.packageGrid.replaceChildren();
+      m.ways.forEach(way => {
+        if (!has(m.packages, way)) return; // e.g. Comfort has no package in Element
+        const card = makeEl("button", "package-card");
+        card.type = "button";
+        card.append(makeEl("strong", null, wayUpper(way)), makeEl("span", "package-desc", ORDER.WAYS[way].description), makeEl("span", "package-comp", `Isi: ${compositionText(m.packages[way])}`));
+        if (isPrice(ORDER.PRICE_PER_PACKAGE)) card.append(makeEl("span", "package-price", formatRupiah(ORDER.PRICE_PER_PACKAGE)));
+        card.addEventListener("click", () => navigate(`/beli/${mode}/${way}`));
+        flowEls.packageGrid.append(card);
       });
+      flowEls.packageFootnote.textContent = `Pilihanmu menjadi satu paket berisi ${ORDER.PACKAGE_SIZE} botol, masing-masing ${ORDER.BOTTLE_ML} ml, untuk menemani upaya kamu memperbanyak konsumsi buah dan sayur.`;
+      const custom = makeEl("button", "package-card");
+      custom.type = "button";
+      custom.append(makeEl("strong", null, `CUSTOM ${m.label}`), makeEl("span", "package-desc", customDescription(mode)));
+      custom.addEventListener("click", () => navigate(`/beli/${mode}/custom`));
+      flowEls.customSlot.replaceChildren(custom);
+    }
+    function renderPackage(mode, pkg) {
+      const m = getMode(mode);
+      const composition = m.packages[pkg];
+      flowEls.s3aTag.textContent = `${wayUpper(pkg)} ${m.label}`;
+      const others = m.ways.filter(way => way !== pkg && composition[way] > 0).map(wayLabel);
+      flowEls.s3aText.textContent = `${wayLabel(pkg)} menjadi pengalaman (Way) yang utama pekan ini. ${joinWithDan(others)} ikut hadir dalam paketmu. Tubuhmu tidak hidup dari satu hal saja.`;
+      flowEls.s3aList.replaceChildren();
+      packageWays(mode, pkg).forEach((way, index) => {
+        const group = makeEl("section", index === 0 ? "way-group is-main" : "way-group");
+        const title = makeEl("h2", "way-title", wayUpper(way));
+        title.append(makeEl("span", "way-count", `${composition[way]} botol`));
+        const list = makeEl("ul", "bottle-list");
+        WEEK.VARIANTS[way].slice(0, composition[way]).forEach(variant => list.append(makeEl("li", null, `1 btl. ${variant.name} (${variant.fruit})`)));
+        group.append(title, list);
+        flowEls.s3aList.append(group);
+      });
+      flowEls.s3aOrder.textContent = `Pesan paket · ${ORDER.PACKAGE_SIZE} botol`;
+    }
+    function changeQty(code, delta) {
+      const next = Math.min(ORDER.MAX_PER_VARIANT, Math.max(0, (orderState.qty[code] || 0) + delta));
+      orderState.qty[code] = next;
+      refreshQty(code);
+      updateCustomSummary();
+    }
+    function refreshQty(code) {
+      const ref = qtyRefs[code];
+      const value = orderState.qty[code] || 0;
+      ref.value.textContent = String(value);
+      ref.minus.setAttribute("aria-disabled", String(value <= 0)); // aria-disabled keeps keyboard focus on the button
+      ref.plus.setAttribute("aria-disabled", String(value >= ORDER.MAX_PER_VARIANT));
+    }
+    function variantRow(variant) {
+      const row = makeEl("div", "variant-row");
+      const info = makeEl("div", "variant-info");
+      info.append(makeEl("strong", "variant-code", variant.code), makeEl("span", "variant-fruit", variant.fruit));
+      const stepper = makeEl("div", "stepper");
+      stepper.setAttribute("role", "group"); stepper.setAttribute("aria-label", `Jumlah ${variant.code}`);
+      const minus = makeEl("button", null, "−"); minus.type = "button"; minus.setAttribute("aria-label", `Kurangi ${variant.code}`);
+      const plus = makeEl("button", null, "+"); plus.type = "button"; plus.setAttribute("aria-label", `Tambah ${variant.code}`);
+      const value = makeEl("span", "qty-value", "0");
+      minus.addEventListener("click", () => changeQty(variant.code, -1));
+      plus.addEventListener("click", () => changeQty(variant.code, 1));
+      stepper.append(minus, value, plus);
+      row.append(info, stepper);
+      qtyRefs[variant.code] = { value, minus, plus };
+      return row;
+    }
+    function renderCustom(mode) {
+      const m = getMode(mode);
+      flowEls.s3bTag.textContent = `CUSTOM ${m.label}`;
+      const perWay = WEEK.VARIANTS[m.ways[0]].length;
+      const totalVariants = m.ways.reduce((sum, way) => sum + WEEK.VARIANTS[way].length, 0);
+      flowEls.s3bText.textContent = `Varian Pekan Ini: ${m.label}. Varian: ${perWay} per Way, total ${totalVariants} varian.`;
+      flowEls.s3bList.replaceChildren();
+      qtyRefs = {};
+      m.ways.forEach(way => {
+        const group = makeEl("section", "way-group");
+        const list = makeEl("div", "variant-list");
+        WEEK.VARIANTS[way].forEach(variant => list.append(variantRow(variant)));
+        group.append(makeEl("h2", "way-title", wayUpper(way)), list);
+        flowEls.s3bList.append(group);
+      });
+      Object.keys(qtyRefs).forEach(refreshQty);
+      updateCustomSummary();
+    }
+    function updateCustomSummary() {
+      const total = customTotal();
+      const size = ORDER.PACKAGE_SIZE;
+      const valid = total >= ORDER.CUSTOM_MIN && total % size === 0;
+      let message;
+      if (total === 0) message = `Pilih minimal ${ORDER.CUSTOM_MIN} botol`;
+      else if (!valid) {
+        const target = total < ORDER.CUSTOM_MIN ? ORDER.CUSTOM_MIN : Math.ceil(total / size) * size;
+        message = `Tambah ${target - total} botol lagi ke kelipatan ${target}`;
+      } else message = `✓ ${total} botol (${total / size} paket)`;
+      let price = null;
+      if (valid && isPrice(ORDER.PRICE_PER_BOTTLE)) price = total * ORDER.PRICE_PER_BOTTLE;
+      else if (valid && isPrice(ORDER.PRICE_PER_PACKAGE)) price = (total / size) * ORDER.PRICE_PER_PACKAGE;
+      flowEls.customTotal.textContent = String(total);
+      flowEls.customStatus.textContent = message;
+      flowEls.customPrice.hidden = price === null;
+      flowEls.customPrice.textContent = price === null ? "" : formatRupiah(price);
+      flowEls.s3bOrder.disabled = !valid;
+    }
+    function renderDone() {
+      flowEls.doneText.textContent = `Sebelum ${WEEK.CUTOFF_TEXT}, tanyakan lagi pada tubuhmu: apa yang paling terasa untuk pekan berikutnya?`;
+      flowEls.orderNotice.hidden = orderState.whatsappOpened;
+      flowEls.orderSummary.textContent = orderState.summary;
+      flowEls.copyStatus.textContent = "";
+    }
+
+    /* BUY ROUTES: map a hash route to a screen, or null when it is invalid. */
+    function parseBuyRoute(route) {
+      if (route === "/beli") return { screen: 0 };
+      const parts = route.split("/").slice(1);
+      if (parts[0] !== "beli" || parts.some(part => !part)) return null;
+      if (parts.length === 2) {
+        if (parts[1] === "selesai") return orderState.placed ? { screen: 4 } : null; // only right after ordering
+        return has(ORDER.MODES, parts[1]) ? { screen: 1, mode: parts[1] } : null;
+      }
+      if (parts.length === 3 && has(ORDER.MODES, parts[1])) {
+        const mode = parts[1];
+        if (parts[2] === "pilih") return { screen: 2, mode };
+        if (parts[2] === "custom") return { screen: 3, mode, custom: true };
+        if (has(getMode(mode).packages, parts[2])) return { screen: 3, mode, pkg: parts[2] };
+      }
+      return null;
+    }
+    function updateProgress(step) {
+      [...flowProgress.children].forEach((segment, index) => {
+        segment.classList.toggle("is-done", index < step);
+        if (index === step) segment.setAttribute("aria-current", "step"); else segment.removeAttribute("aria-current");
+      });
+      flowProgressLabel.textContent = `Langkah ${step + 1} dari ${flowProgress.children.length}`;
+    }
+    /* Show one screen, fill it from data, then scroll to top and focus its heading. */
+    function renderBuy(buy) {
+      if (buy.mode) setMode(buy.mode);
+      orderState.pkg = buy.pkg || null;
+      const panelId = buy.screen === 3 ? (buy.custom ? "screen-3b" : "screen-3a") : `screen-${buy.screen}`;
+      let panel = null;
+      flowScreens.forEach(item => { item.hidden = item.id !== panelId; if (!item.hidden) panel = item; });
+      document.querySelectorAll("[data-element-only]").forEach(note => { note.hidden = orderState.mode !== "element"; });
+      if (buy.screen === 1) renderScreenOne();
+      if (buy.screen === 2) renderScreenTwo(buy.mode);
+      if (buy.screen === 3 && buy.custom) renderCustom(buy.mode);
+      if (buy.screen === 3 && !buy.custom) renderPackage(buy.mode, buy.pkg);
+      if (buy.screen === 4) renderDone();
+      updateProgress(buy.screen);
+      panel.classList.remove("page-enter"); void panel.offsetWidth; panel.classList.add("page-enter");
+      document.title = `${panel.dataset.title} — ${CONFIG.BRAND}`;
+      window.scrollTo(0, 0);
+      requestAnimationFrame(() => panel.querySelector("h1").focus({ preventScroll: true }));
+    }
+    /* ORDER FLOW SETUP: fixed copy that depends on CONFIG, plus one-time button handlers. */
+    function initOrderFlow() {
+      document.querySelectorAll("[data-trace-note]").forEach(note => { note.textContent = ORDER.MODES.element.traceNote; });
+      document.querySelectorAll("[data-mode-choice]").forEach(button => button.addEventListener("click", () => {
+        setMode(button.dataset.modeChoice);
+        navigate(`/beli/${button.dataset.modeChoice}`);
+      }));
+      byId("s1-change").addEventListener("click", () => navigate("/beli"));
+      byId("s1-next").addEventListener("click", () => navigate(`/beli/${orderState.mode}/pilih`));
+      byId("s2-back").addEventListener("click", () => navigate(`/beli/${orderState.mode}`));
+      byId("s3a-back").addEventListener("click", () => navigate(`/beli/${orderState.mode}/pilih`));
+      byId("s3a-order").addEventListener("click", () => placeOrder(packageSummary(orderState.mode, orderState.pkg)));
+      byId("s3b-back").addEventListener("click", () => navigate(`/beli/${orderState.mode}/pilih`));
+      byId("s3b-order").addEventListener("click", () => { if (!flowEls.s3bOrder.disabled) placeOrder(customSummary()); });
+      byId("copy-summary").addEventListener("click", copySummary);
     }
 
     /* SHARED NAV SETUP: apply the editable brand and Instagram URL in the config. */
@@ -522,34 +952,28 @@
     }
     function renderRoute() {
       let route = currentRoute();
-      const typeMatch = route.match(/^\/beli\/(pantangan|bebas)$/);
-      if (route !== "/" && route !== "/beli" && !typeMatch) {
+      let buy = null;
+      if (route === "/beli" || route.startsWith("/beli/")) {
+        buy = parseBuyRoute(route);
+        if (!buy) { // invalid Buy routes (unknown mode/Way, comfort in Element, direct #/beli/selesai) go back to Screen 0
+          history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/beli`);
+          route = "/beli"; buy = parseBuyRoute(route);
+        }
+      } else if (route !== "/") {
         history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
         route = "/";
       }
-      const isBuy = route.startsWith("/beli");
+      if (!buy || buy.screen !== 4) { orderState.placed = false; orderState.summary = ""; orderState.whatsappOpened = false; } // Screen 4 is valid once
+      const isBuy = Boolean(buy);
       homePage.hidden = isBuy;
       buyPage.hidden = !isBuy;
-      homePage.classList.remove("page-enter"); buyPage.classList.remove("page-enter");
-      (isBuy ? buyPage : homePage).classList.add("page-enter");
+      homePage.classList.remove("page-enter");
+      if (!isBuy) homePage.classList.add("page-enter"); // Buy screens animate themselves in renderBuy
       updateNav(route);
       closeMenu();
 
-      if (typeMatch) {
-        activeType = typeMatch[1]; activeCategory = "Semua";
-        buyTypeView.hidden = true; buyListView.hidden = false;
-        const type = CONFIG.TYPES[activeType];
-        buyListHeading.textContent = type.title;
-        const products = Array.isArray(CONFIG.PRODUCTS[activeType]) ? CONFIG.PRODUCTS[activeType] : [];
-        renderFilters(products); renderProducts(products);
-        document.title = `${type.title} — ${CONFIG.BRAND}`;
-        window.scrollTo(0, 0); requestAnimationFrame(() => buyListHeading.focus());
-      } else if (route === "/beli") {
-        activeType = null; buyTypeView.hidden = false; buyListView.hidden = true;
-        document.title = `Pilih Produk — ${CONFIG.BRAND}`;
-        window.scrollTo(0, 0); requestAnimationFrame(() => buyMainHeading.focus());
-      } else {
-        activeType = null; buyTypeView.hidden = false; buyListView.hidden = true;
+      if (buy) renderBuy(buy);
+      else {
         document.title = `${CONFIG.BRAND} — Segarnya Buah, Setiap Hari`;
         window.scrollTo(0, 0);
         if (pendingHomeSection) {
@@ -579,7 +1003,6 @@
     menuToggle.addEventListener("click", () => {
       const open = navLinks.classList.toggle("is-open"); menuToggle.setAttribute("aria-expanded", String(open)); menuToggle.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu"); menuToggle.textContent = open ? "×" : "☰";
     });
-    document.getElementById("buy-back").addEventListener("click", () => navigate("/beli"));
 
     /* SCROLL REVEAL: observe home sections when visible and respect reduced motion. */
     let revealObserver;
@@ -611,8 +1034,8 @@
       } finally { submit.disabled = false; submit.innerHTML = 'Kirim data <span aria-hidden="true">→</span>'; }
     });
 
-    /* STARTUP: render data and resolve the initial hash route (or default home route). */
-    renderTypeChoices();
+    /* STARTUP: set up the order flow and resolve the initial hash route (or default home route). */
+    initOrderFlow();
     if (!window.location.hash) history.replaceState(null, "", `${window.location.pathname}${window.location.search}#/`);
     renderRoute();
   </script>
