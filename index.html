@@ -117,12 +117,13 @@
     .choice-arrow{margin-top:auto;padding-top:.5rem;color:var(--green)}
     .custom-slot{margin-top:1rem}
     /* KARTU PAKET (Layar 2): kotak nama di atas + kotak tinggi di bawah, sesuai sketsa. */
-.package-grid .package-card{padding:0;gap:.7rem;border:0;border-radius:0;background:transparent}
-.package-grid .package-card:hover{background:transparent}
-.package-grid .package-name{display:grid;place-items:center;min-height:84px;padding:.6rem;border:1.5px solid var(--green);border-radius:var(--r-sm);background:var(--surface);color:var(--green);font:1.4rem/1.15 var(--serif);letter-spacing:.06em;text-align:center;transition:background .18s}
-.package-body{display:flex;flex:1;flex-direction:column;gap:.6rem;min-height:250px;padding:1rem;border:1.5px solid var(--green);border-radius:var(--r-md);background:var(--surface);transition:background .18s}
-.package-body .package-comp{margin-top:auto}
-.package-grid .package-card:hover .package-name,.package-grid .package-card:hover .package-body{background:var(--green-soft)}
+   .package-grid .package-card,.custom-slot .package-card{padding:0;gap:.7rem;border:0;border-radius:0;background:transparent}
+   .package-grid .package-card:hover,.custom-slot .package-card:hover{background:transparent}
+   .package-card .package-name{display:grid;place-items:center;min-height:84px;padding:.6rem;border:1.5px solid var(--green);border-radius:var(--r-sm);background:var(--surface);color:var(--green);font:1.4rem/1.15 var(--serif);letter-spacing:.06em;text-align:center;transition:background .18s}
+   .package-body{display:flex;flex:1;flex-direction:column;gap:.6rem;min-height:250px;padding:1rem;border:1.5px solid var(--green);border-radius:var(--r-md);background:var(--surface);transition:background .18s}
+   .custom-slot .package-body{min-height:0}
+   .package-body .package-comp{margin-top:auto}
+   .package-card:hover .package-name,.package-card:hover .package-body{background:var(--green-soft)}
     /* Screen 3: variants grouped by Way, bottle lines, quantity steppers. */
     .way-group{margin-top:1.6rem}
     .way-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin:0 0 .8rem;color:var(--green);font:1.5rem/1.2 var(--serif);letter-spacing:.06em}
@@ -778,7 +779,9 @@
       flowEls.packageFootnote.textContent = `Pilihanmu menjadi satu paket berisi ${ORDER.PACKAGE_SIZE} botol, masing-masing ${ORDER.BOTTLE_ML} ml, untuk menemani upaya kamu memperbanyak konsumsi buah dan sayur.`;
       const custom = makeEl("button", "package-card");
       custom.type = "button";
-      custom.append(makeEl("strong", null, `CUSTOM ${m.label}`), makeEl("span", "package-desc", customDescription(mode)));
+      const customBody = makeEl("span", "package-body");
+      customBody.append(makeEl("span", "package-desc", customDescription(mode)));
+      custom.append(makeEl("strong", "package-name", `CUSTOM ${m.label}`), customBody);
       custom.addEventListener("click", () => navigate(`/beli/${mode}/custom`));
       flowEls.customSlot.replaceChildren(custom);
     }
