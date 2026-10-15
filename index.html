@@ -102,8 +102,8 @@
     .flow-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem;margin-top:2rem}
     .trace-note{max-width:720px;margin:0 auto 1.4rem;padding:.8rem 1rem;border-radius:var(--r-sm);background:var(--green-soft);color:var(--green);font-size:.8rem;font-weight:600;text-align:center}
     /* Choice cards (Screen 0) and package cards (Screen 2) are real buttons. */
-    .choice-grid,.package-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
-    .package-grid>:last-child:nth-child(odd){grid-column:1/-1}
+    .choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+    .package-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem} 
     .choice-card,.package-card{display:flex;min-width:0;flex-direction:column;gap:.5rem;padding:clamp(1.2rem,4vw,1.8rem);border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);color:var(--ink);text-align:left;cursor:pointer;transition:border-color .18s,background .18s}
     .choice-card{min-height:200px}
     .choice-card:hover,.package-card:hover{border-color:var(--green);background:var(--green-soft)}
@@ -116,7 +116,13 @@
     .choice-card:hover .choice-note{background:var(--surface)}
     .choice-arrow{margin-top:auto;padding-top:.5rem;color:var(--green)}
     .custom-slot{margin-top:1rem}
-    .custom-slot .package-card{width:100%}
+    /* KARTU PAKET (Layar 2): kotak nama di atas + kotak tinggi di bawah, sesuai sketsa. */
+.package-grid .package-card{padding:0;gap:.7rem;border:0;border-radius:0;background:transparent}
+.package-grid .package-card:hover{background:transparent}
+.package-grid .package-name{display:grid;place-items:center;min-height:84px;padding:.6rem;border:1.5px solid var(--green);border-radius:var(--r-sm);background:var(--surface);color:var(--green);font:1.4rem/1.15 var(--serif);letter-spacing:.06em;text-align:center;transition:background .18s}
+.package-body{display:flex;flex:1;flex-direction:column;gap:.6rem;min-height:250px;padding:1rem;border:1.5px solid var(--green);border-radius:var(--r-md);background:var(--surface);transition:background .18s}
+.package-body .package-comp{margin-top:auto}
+.package-grid .package-card:hover .package-name,.package-grid .package-card:hover .package-body{background:var(--green-soft)}
     /* Screen 3: variants grouped by Way, bottle lines, quantity steppers. */
     .way-group{margin-top:1.6rem}
     .way-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin:0 0 .8rem;color:var(--green);font:1.5rem/1.2 var(--serif);letter-spacing:.06em}
@@ -151,8 +157,7 @@
     .copy-status{margin:.7rem 0 0;color:var(--green);font-size:.82rem;font-weight:700}
     /* Used by the carousel when CONFIG.SLIDES is empty. */
     .empty-state{grid-column:1/-1;padding:2rem 1.2rem;border:1px dashed var(--line);border-radius:var(--r-md);color:var(--muted);text-align:center}
-    @media(max-width:700px){.choice-grid,.package-grid{grid-template-columns:1fr}.choice-card{min-height:0}.summary-actions{flex-basis:100%}}
-    /* SHARED FOOTER: used for home and all Buy routes. */
+    @media(max-width:700px){.choice-grid{grid-template-columns:1fr}.choice-card{min-height:0}.summary-actions{flex-basis:100%}}    /* SHARED FOOTER: used for home and all Buy routes. */
     .site-footer{padding:3.2rem 0 1.2rem;background:var(--green);color:var(--paper)}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem}.footer-brand{color:var(--paper)}.footer-copy{max-width:340px;margin:.9rem 0 0;color:#d8e6dd;font-size:.8rem}.footer-title{margin:0 0 .8rem;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase}.footer-links{display:grid;justify-items:start;gap:.45rem}.footer-links a{color:#e5eee8;font-size:.8rem;text-decoration:none}.footer-links a:hover{text-decoration:underline}.copyright{display:flex;justify-content:space-between;gap:1rem;padding-top:1rem;border-top:1px solid rgba(244,248,251,.25);color:#d8e6dd;font-size:.68rem}
     /* PAGE TRANSITION AND SCROLL REVEAL: subtle motion with a reduced-motion fallback. */
     .page-enter{animation:page-in .28s ease both}@keyframes page-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}.reveal.is-visible{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
@@ -763,8 +768,10 @@
         if (!has(m.packages, way)) return; // e.g. Comfort has no package in Element
         const card = makeEl("button", "package-card");
         card.type = "button";
-        card.append(makeEl("strong", null, wayUpper(way)), makeEl("span", "package-desc", ORDER.WAYS[way].description), makeEl("span", "package-comp", `Isi: ${compositionText(m.packages[way])}`));
-        if (isPrice(ORDER.PRICE_PER_PACKAGE)) card.append(makeEl("span", "package-price", formatRupiah(ORDER.PRICE_PER_PACKAGE)));
+       const body = makeEl("span", "package-body");
+       body.append(makeEl("span", "package-desc", ORDER.WAYS[way].description), makeEl("span", "package-comp", `Isi: ${compositionText(m.packages[way])}`));
+       if (isPrice(ORDER.PRICE_PER_PACKAGE)) body.append(makeEl("span", "package-price", formatRupiah(ORDER.PRICE_PER_PACKAGE)));
+       card.append(makeEl("strong", "package-name", wayUpper(way)), body);
         card.addEventListener("click", () => navigate(`/beli/${mode}/${way}`));
         flowEls.packageGrid.append(card);
       });
