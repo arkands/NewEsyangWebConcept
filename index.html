@@ -117,13 +117,32 @@
     .choice-arrow{margin-top:auto;padding-top:.5rem;color:var(--green)}
     .custom-slot{margin-top:1rem}
     /* KARTU PAKET (Layar 2): kotak nama di atas + kotak tinggi di bawah, sesuai sketsa. */
-   .package-grid .package-card,.custom-slot .package-card{padding:0;gap:.7rem;border:0;border-radius:0;background:transparent}
-   .package-grid .package-card:hover,.custom-slot .package-card:hover{background:transparent}
-   .package-card .package-name{display:grid;place-items:center;min-height:84px;padding:.6rem;border:1.5px solid var(--green);border-radius:var(--r-sm);background:var(--surface);color:var(--green);font:1.4rem/1.15 var(--serif);letter-spacing:.06em;text-align:center;transition:background .18s}
-   .package-body{display:flex;flex:1;flex-direction:column;gap:.6rem;min-height:250px;padding:1rem;border:1.5px solid var(--green);border-radius:var(--r-md);background:var(--surface);transition:background .18s}
-   .custom-slot .package-body{min-height:0}
-   .package-body .package-comp{margin-top:auto}
-   .package-card:hover .package-name,.package-card:hover .package-body{background:var(--green-soft)}
+   /* KARTU TIPE (Layar 2): tag berwarna + kotak slider menu + tombol detail. */
+.pkg{display:flex;min-width:0;flex-direction:column;gap:.7rem}
+.pkg-tag{display:flex;flex-direction:column;justify-content:center;gap:.15rem;min-height:84px;padding:.7rem .6rem;border-radius:var(--r-md);color:var(--green);text-align:center}
+.pkg-tag.is-custom{background:var(--surface);border:1.5px solid var(--green)}
+.pkg-tag-title{margin:0;font-size:1.15rem;line-height:1.2}
+.pkg-tag-title strong{font-weight:800;letter-spacing:.04em}
+.pkg-tag-comp{margin:0;font-size:.74rem;line-height:1.35;font-weight:600}
+.pkg-box{display:flex;flex:1;flex-direction:column;gap:.6rem;padding:.6rem;border:1.5px solid var(--green);border-radius:var(--r-md);background:var(--surface)}
+.pkg-slider{position:relative;border-radius:var(--r-sm);overflow:hidden}
+.pkg-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.pkg-track::-webkit-scrollbar{display:none}
+.pkg-slide{flex:0 0 100%;aspect-ratio:9/16;scroll-snap-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;padding:.8rem;text-align:center;color:var(--green)}
+.pkg-slide.has-image{padding:0}
+.pkg-slide img{width:100%;height:100%;object-fit:contain}
+.pkg-ph-way{font-size:.95rem;font-weight:800;letter-spacing:.14em}
+.pkg-ph-name{font:1rem/1.2 var(--serif)}
+.pkg-ph-fruit{font-size:.7rem;line-height:1.35}
+.pkg-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;display:grid;place-items:center;padding:0;border:1px solid var(--green);border-radius:50%;background:rgba(255,255,255,.92);color:var(--green);font-size:1.2rem;line-height:1;cursor:pointer}
+.pkg-arrow:hover{background:var(--green-soft)}
+.pkg-prev{left:.35rem}
+.pkg-next{right:.35rem}
+.pkg-status{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem;min-height:.8rem;color:var(--green);font-size:.74rem;font-weight:800}
+.pkg-dot{width:7px;height:7px;border-radius:50%;background:var(--line)}
+.pkg-dot.is-on{background:var(--green)}
+.pkg-detail{margin-top:auto;width:100%}
+@media(prefers-reduced-motion:reduce){.pkg-track{scroll-behavior:auto}}
     /* Screen 3: variants grouped by Way, bottle lines, quantity steppers. */
     .way-group{margin-top:1.6rem}
     .way-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:.7rem;margin:0 0 .8rem;color:var(--green);font:1.5rem/1.2 var(--serif);letter-spacing:.06em}
@@ -360,10 +379,10 @@
         PRICE_PER_PACKAGE: null,  // angka (Rupiah) untuk menampilkan harga paket; null = tidak tampil
         PRICE_PER_BOTTLE: null,   // angka (Rupiah) untuk total Custom; null = tidak tampil
         WAYS: {
-          pure: { label: "Pure", description: "Sederhana, apa adanya. Buah saja." },
-          comfort: { label: "Comfort", description: "Akrab. Buah dengan bahan yang sudah kamu kenal, termasuk gula pasir atau bahan susu (Dairy)." },
-          clean: { label: "Clean", description: "Manis secukupnya, dari yang alami. Buah dengan pemanis alami, misalnya madu." },
-          explore: { label: "Explore", description: "Ingin tahu. Buah bertemu bahan nabati lain, misalnya sayur, seed, & herb." }
+          pure: { label: "Pure", color: "#9ab36a", description: "Sederhana, apa adanya. Buah saja." },
+          comfort: { label: "Comfort", color: "#e5dcc3", description: "Akrab. Buah dengan bahan yang sudah kamu kenal, termasuk gula pasir atau bahan susu (Dairy)." },
+          clean: { label: "Clean", color: "#efc572", description: "Manis secukupnya, dari yang alami. Buah dengan pemanis alami, misalnya madu." },
+          explore: { label: "Explore", color: "#de9577", description: "Ingin tahu. Buah bertemu bahan nabati lain, misalnya sayur, seed, & herb." }
         },
         MODES: {
           routine: {
@@ -398,6 +417,7 @@
          - Perbarui juga CUTOFF_TEXT jika batas pemesanan berubah. */
       WEEK: {
         CUTOFF_TEXT: "Kamis 16.00",
+        IMAGES: {}, // foto menu per varian, contoh: "A-pure": "images/A-pure.jpg". Kosong = placeholder berwarna.
         VARIANTS: {
           pure: [
             { code: "A-pure", name: "Varian A-pure", fruit: "100% Real Fruit" },
